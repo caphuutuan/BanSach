@@ -8,6 +8,7 @@ namespace Data.Enums
 {
 	public enum CategoryStatus
 	{
-
-	}
+        Active,
+        InActive
+    }
 }

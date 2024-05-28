@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace Data.Entities
 {
-    public class Role
+    public class MemberTier
     {
-        public int RoleId { get; set; }
+        public int MemberTierId { get; set; }
 
-        public string RoleName { get; set; }
+        public string Name{ get; set; }
 
         public string? Description { get; set; }
-        public List<User> Users { get; set; }
-        public List<UserRole> UserRoles { get; set; }
 
+        public List<User> Users { get; set; }
     }
 }

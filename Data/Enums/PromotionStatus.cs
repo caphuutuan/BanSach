@@ -9,6 +9,6 @@ namespace Data.Enums
 	public enum PromotionStatus
 	{
 		Active,
-		Inactive
+		InActive
 	}
 }

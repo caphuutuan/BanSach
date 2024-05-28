@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace Data.Entities
 {
-	public class Publisher
-	{
-		public int PublisherId { get; set; }
-		public string Name { get; set; }
-		public string Description { get; set; }
-		public string Image { get; set; }
-	}
+    public class Publisher
+    {
+        public int PublisherId { get; set; }
+
+        public string PublisherName { get; set; } = null!;
+
+        public string? Image { get; set; }
+
+        public string? Description { get; set; }
+
+        public List<Product> Products { get; set; }
+    }
 }

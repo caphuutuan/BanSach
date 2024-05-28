@@ -9,6 +9,6 @@ namespace Data.Enums
 	public enum ContactStatus
 	{
 		Active,
-		Inactive
+		InActive
 	}
 }

@@ -8,7 +8,7 @@ namespace Data.Enums
 {
 	public enum BlogStatus
 	{
-		Actived,
+		Active,
 		InActive
 	}
 }

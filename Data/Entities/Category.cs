@@ -3,18 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Data.Enums;
 
 namespace Data.Entities
 {
-	public class Category
-	{
-		public int CategoryId { get; set; }
-		public bool IsShowOnHome { get; set; }
-		public int? ParentId { get; set; }
-		public DateTime CreatedDate { get; set; }
-		public CategoryStatus Status { get; set; }
+    public class Category
+    {
+        public int CategoryId { get; set; }
 
+        public string CategoryName { get; set; }
 
-	}
+        public string? Image { get; set; }
+
+        public int? ParentId { get; set; }
+
+        public string SeoDescription { get; set; }
+
+        public string SeoTitle { get; set; }
+
+        public string SeoAlias { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+
+        public int? Status { get; set; }
+
+        public List<ProductCategory> ProductCategories { get; set; }
+
+        public List<Product> Product { get; set; }
+    }
 }

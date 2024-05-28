@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 
 namespace Data.Entities
 {
-    public class ProductCategory
+    public class OrderDetail
     {
+        public int OrderDetailId { get; set; }
+        public int OrderId { get; set; }
+
         public int ProductId { get; set; }
 
-        public int CategoryId { get; set; }
+        public int Quantity { get; set; }
 
-        public Category Category { get; set; }
+        public decimal RentalPrice { get; set; }
+
+        public Order Order { get; set; }
 
         public Product Product { get; set; }
     }
