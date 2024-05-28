@@ -1,3 +1,5 @@
 
-Microsoft.EntityFrameworkCore 6.0.30
-Microsoft.EntityFrameworkCore.SqlServer 6.0.30
+Microsoft.EntityFrameworkCore 7.0.19
+Microsoft.EntityFrameworkCore.SqlServer 7.0.19
+Microsoft.EntityFrameworkCore.Tools 7.0.19
+Microsoft.VisualStudio.Web.CodeGeneration.Design 7.0.12
