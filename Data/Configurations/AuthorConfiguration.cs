@@ -16,9 +16,9 @@ namespace Data.Configurations
             builder.ToTable("Authors");
             builder.HasKey(x => x.AuthorId);
             builder.Property(x => x.AuthorId).UseIdentityColumn();
-            builder.Property(x => x.AuthorName).IsRequired().HasMaxLength(50);
-            builder.Property(x => x.Image);
-            builder.Property(x => x.Description);
+            builder.Property(x => x.AuthorName).IsRequired().HasMaxLength(150);
+            builder.Property(x => x.Image).HasMaxLength(255);
+            builder.Property(x => x.Description).HasMaxLength(300);
         }
     }
 }

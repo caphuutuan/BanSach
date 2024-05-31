@@ -16,15 +16,15 @@ namespace Data.Configurations
         {
             builder.ToTable("Categories");
             builder.HasKey(x => x.CategoryId);
-            builder.Property(x => x.CategoryId).UseIdentityColumn();
-            builder.Property(x => x.CategoryName).IsRequired().HasMaxLength(50);
-            builder.Property(x => x.Image);
-            builder.Property(x => x.SeoDescription).IsRequired();
-            builder.Property(x => x.SeoTitle).IsRequired();
-            builder.Property(x => x.SeoAlias).IsRequired();
+            builder.Property(x => x.CategoryId).IsRequired().UseIdentityColumn();
+            builder.Property(x => x.CategoryName).IsRequired().HasMaxLength(150);
+            builder.Property(x => x.Image).HasMaxLength(255);
+            builder.Property(x => x.SeoDescription).HasMaxLength(500);
+            builder.Property(x => x.SeoTitle).HasMaxLength(150);
+            builder.Property(x => x.SeoAlias).HasMaxLength(150);
             builder.Property(x => x.ParentId);
-            builder.Property(x => x.CreatedDate).HasColumnType("datetime");
-            builder.Property(x => x.Status).HasDefaultValue(CategoryStatus.Active);
+            builder.Property(x => x.CreatedDate);
+            builder.Property(x => x.Status);
 
         }
     }

@@ -19,17 +19,16 @@ namespace Data.Configurations
             builder.Property(x => x.LastName).IsRequired().HasMaxLength(50);
             builder.Property(x => x.Sdt).IsRequired().HasMaxLength(10);
             builder.Property(x => x.Email).IsRequired().HasMaxLength(30);
-            builder.Property(x => x.Address).HasMaxLength(250);
-            builder.Property(x => x.Image).IsRequired();
+            builder.Property(x => x.Address).HasMaxLength(200);
+            builder.Property(x => x.Image);
             builder.Property(x => x.Username).IsRequired().HasMaxLength(20);
             builder.Property(x => x.Password).IsRequired().HasMaxLength(20);
-            builder.Property(x => x.Dob).IsRequired().HasColumnType("date");
+            builder.Property(x => x.Dob).IsRequired();
             builder.Property(x => x.AmountBorrowed).HasDefaultValue(0);
-            builder.Property(x => x.LastLogin).HasColumnType("datetime");
-            builder.Property(x => x.CreatedDate).HasColumnType("datetime");
-            builder.Property(x => x.MemberTierId);
+            builder.Property(x => x.LastLogin);
+            builder.Property(x => x.CreatedDate);
             builder.Property(x => x.RoleId);
-            builder.Property(x => x.Status).IsRequired();
+            builder.Property(x => x.Status);
         }
     }
 }

@@ -16,9 +16,7 @@ namespace Data.Configurations
             builder.ToTable("OrderDetails");
             builder.HasKey(builder => builder.OrderDetailId);
             builder.HasOne(x=>x.Order).WithMany(x=>x.OrderDetails).HasForeignKey(x=>x.OrderId);
-            builder.HasOne(x=>x.Product).WithMany(x=>x.OrderDetails).HasForeignKey(x => x.ProductId).IsRequired();
-            builder.Property(x => x.Quantity).IsRequired();
-            builder.Property(x => x.RentalPrice).IsRequired();
+            builder.HasOne(x=>x.Product).WithMany(x=>x.OrderDetails).HasForeignKey(x => x.ProductId);
         }
     }
 }
