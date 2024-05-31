@@ -16,20 +16,20 @@ namespace Data.Configurations
             builder.ToTable("Products");
             builder.HasKey(x => x.ProductId);
             builder.Property(x => x.ProductId).UseIdentityColumn();
-            builder.Property(x => x.CategoryId).IsRequired();
-            builder.Property(x => x.ProductName).IsRequired();
-            builder.Property(x => x.Image);
-            builder.Property(x => x.Description).IsRequired();
-            builder.Property(x => x.Detail).IsRequired();
+            builder.HasOne(x => x.Categories).WithMany(x => x.Products).HasForeignKey(x => x.CategoryId);
+            builder.Property(x => x.ProductName).IsRequired().HasMaxLength(200);
+            builder.Property(x => x.Image).HasMaxLength(255);
+            builder.Property(x => x.Description).HasMaxLength(300);
+            builder.Property(x => x.Detail).HasMaxLength(300);
             builder.Property(x => x.Stock).IsRequired().HasDefaultValue(0);
-            builder.Property(x => x.AuthorId).IsRequired();
-            builder.Property(x => x.PublisherId).IsRequired();
-            builder.Property(x => x.SeoTitle).IsRequired();
-            builder.Property(x => x.SeoDescription).IsRequired();
-            builder.Property(x => x.SeoAlias).IsRequired();
-            builder.Property(x => x.CreatedDate).IsRequired().HasColumnType("datetime");
-            builder.Property(x => x.UpdateDate).IsRequired().HasColumnType("datetime");
-            builder.Property(x => x.Status).IsRequired();
+            builder.HasOne(x => x.Author).WithMany(x => x.Products).HasForeignKey(x => x.AuthorId);
+            builder.HasOne(x => x.Publisher).WithMany(x => x.Products).HasForeignKey(x => x.PublisherId);
+            builder.Property(x => x.SeoTitle).HasMaxLength(300);
+            builder.Property(x => x.SeoDescription).HasMaxLength(300);
+            builder.Property(x => x.SeoAlias).HasMaxLength(300);
+            builder.Property(x => x.CreatedDate);
+            builder.Property(x => x.UpdateDate);
+            builder.Property(x => x.Status);
         }
     }
 }

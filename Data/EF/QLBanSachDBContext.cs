@@ -15,15 +15,11 @@ public partial class QLBanSachDBContext : DbContext
 
     public DbSet<Author> Authors { get; set; }
 
-    public DbSet<Blog> Blogs { get; set; }
-
     public DbSet<Cart> Carts { get; set; }
 
     public DbSet<Category> Categorys { get; set; }
 
     public DbSet<Contact> Contacts { get; set; }
-
-    public DbSet<MemberTier> MemberTiers { get; set; }
 
     public DbSet<Order> Orders { get; set; }
 
@@ -33,29 +29,30 @@ public partial class QLBanSachDBContext : DbContext
 
     public DbSet<ProductCategory> ProductCategorys { get; set; }
 
-    public DbSet<Promotion> Promotions { get; set; }
-
     public DbSet<Publisher> Publishers { get; set; }
 
     public DbSet<Role> Roles { get; set; }
 
-    public DbSet<Rule> Rules { get; set; }
-
     public DbSet<User> Users { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+            optionsBuilder.UseSqlServer("Server=DESKTOP-F656NNQ\\HUUTUAN;Database=QLBanSach;Integrated Security=True;");
+        }
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new AuthorConfiguration());
-
-        modelBuilder.ApplyConfiguration(new BlogConfiguration());
 
         modelBuilder.ApplyConfiguration(new CartConfiguration());
 
         modelBuilder.ApplyConfiguration(new CategoryConfiguration());
 
         modelBuilder.ApplyConfiguration(new ContactConfiguration());
-
-        modelBuilder.ApplyConfiguration(new MemberTierConfiguration());
 
         modelBuilder.ApplyConfiguration(new OrderConfiguration());
 
@@ -65,15 +62,11 @@ public partial class QLBanSachDBContext : DbContext
 
         modelBuilder.ApplyConfiguration(new ProductCategoryConfiguration());
 
-        modelBuilder.ApplyConfiguration(new PromotionConfiguration());
-
         modelBuilder.ApplyConfiguration(new PublisherConfiguration());
 
         modelBuilder.ApplyConfiguration(new PublisherConfiguration());
 
         modelBuilder.ApplyConfiguration(new RoleConfiguration());
-
-        modelBuilder.ApplyConfiguration(new RuleConfiguration());
 
         modelBuilder.ApplyConfiguration(new UserConfiguration());
 

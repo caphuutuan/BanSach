@@ -16,7 +16,7 @@ namespace Data.Configurations
             builder.ToTable("Roles");
             builder.HasKey(x => x.RoleId);
             builder.Property(x => x.RoleId).UseIdentityColumn();
-            builder.Property(e => e.RoleName).HasMaxLength(50);
+            builder.Property(e => e.RoleName).IsRequired().HasMaxLength(50);
             builder.Property(e => e.Description).HasMaxLength(200);
         }
     }

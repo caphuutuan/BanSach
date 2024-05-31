@@ -9,10 +9,9 @@ namespace Data.Entities
     public class Role
     {
         public int RoleId { get; set; }
-
         public string RoleName { get; set; }
+        public string Description { get; set; }
 
-        public string? Description { get; set; }
         public List<User> Users { get; set; }
         public List<UserRole> UserRoles { get; set; }
 
