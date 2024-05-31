@@ -15,7 +15,8 @@ namespace Data.Configurations
         public void Configure(EntityTypeBuilder<Cart> builder)
         {
             builder.ToTable("Carts");
-            builder.HasOne(x => x.User).WithMany(x=>x.Carts).HasForeignKey(e=>e.UserId);
+            builder.HasKey(t => new { t.ProductId, t.UserId });
+            builder.HasOne(x => x.User).WithMany(x=>x.Carts).HasForeignKey(x=>x.UserId);
             builder.HasOne(e => e.Product).WithMany(e=> e.Carts).HasForeignKey(e=>e.ProductId);
             builder.Property(e => e.Quantity);
         }
