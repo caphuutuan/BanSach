@@ -37,13 +37,7 @@ public partial class QLBanSachDBContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new AuthorConfiguration());
-
         modelBuilder.ApplyConfiguration(new CartConfiguration());
-
-        modelBuilder.ApplyConfiguration(new CategoryConfiguration());
-
-        modelBuilder.ApplyConfiguration(new ContactConfiguration());
 
         modelBuilder.ApplyConfiguration(new OrderConfiguration());
 
@@ -52,10 +46,6 @@ public partial class QLBanSachDBContext : DbContext
         modelBuilder.ApplyConfiguration(new ProductConfiguration());
 
         modelBuilder.ApplyConfiguration(new ProductCategoryConfiguration());
-
-        modelBuilder.ApplyConfiguration(new PublisherConfiguration());
-
-        modelBuilder.ApplyConfiguration(new RoleConfiguration());
 
         modelBuilder.ApplyConfiguration(new UserConfiguration());
 

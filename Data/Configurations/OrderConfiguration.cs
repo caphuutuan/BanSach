@@ -13,15 +13,8 @@ namespace Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
-            builder.ToTable("Orders");
-            builder.HasKey(x => x.OrderId);
-            builder.Property(x => x.OrderId).UseIdentityColumn();
             builder.HasOne(x => x.User).WithMany(x=>x.Orders).HasForeignKey(x=>x.UserId);
-            builder.Property(x => x.OrderDate);
-            builder.Property(x => x.ReturnDate);
-            builder.Property(x => x.LateFee);
-            builder.Property(x => x.TotalPrice);
-            builder.Property(x => x.Status);
+            builder.Property(x=>x.OrderDate).HasDefaultValue(DateTime.Now);
         }
     }
 }

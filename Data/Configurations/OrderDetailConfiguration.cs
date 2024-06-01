@@ -13,8 +13,6 @@ namespace Data.Configurations
     {
         public void Configure(EntityTypeBuilder<OrderDetail> builder)
         {
-            builder.ToTable("OrderDetails");
-            builder.HasKey(builder => builder.OrderDetailId);
             builder.HasOne(x=>x.Order).WithMany(x=>x.OrderDetails).HasForeignKey(x=>x.OrderId);
             builder.HasOne(x=>x.Product).WithMany(x=>x.OrderDetails).HasForeignKey(x => x.ProductId);
         }
