@@ -15,8 +15,8 @@ namespace Data.Configurations
         public void Configure(EntityTypeBuilder<Cart> builder)
         {
             builder.HasKey(t => new { t.ProductId, t.UserId });
-            builder.HasOne(x => x.User).WithMany(x=>x.Carts).HasForeignKey(x=>x.UserId).OnDelete(DeleteBehavior.NoAction);
-            builder.HasOne(e => e.Product).WithMany(e=> e.Carts).HasForeignKey(e=>e.ProductId).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(x => x.User).WithMany(x=>x.Carts).HasForeignKey(x=>x.UserId);
+            builder.HasOne(e => e.Product).WithMany(e=> e.Carts).HasForeignKey(e=>e.ProductId);
         }
     }
 }

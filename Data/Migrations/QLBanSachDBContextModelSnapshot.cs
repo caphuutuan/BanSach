@@ -32,8 +32,8 @@ namespace Data.Migrations
 
                     b.Property<string>("AuthorName")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -47,7 +47,7 @@ namespace Data.Migrations
 
                     b.HasKey("AuthorId");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.Cart", b =>
@@ -65,7 +65,7 @@ namespace Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Carts");
+                    b.ToTable("Carts", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.Category", b =>
@@ -78,8 +78,8 @@ namespace Data.Migrations
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -94,27 +94,25 @@ namespace Data.Migrations
 
                     b.Property<string>("SeoAlias")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("SeoDescription")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("SeoTitle")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("CategoryId");
 
-                    b.HasIndex("ParentId");
-
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.Contact", b =>
@@ -135,8 +133,7 @@ namespace Data.Migrations
 
                     b.Property<string>("Message")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
@@ -147,7 +144,7 @@ namespace Data.Migrations
 
                     b.HasKey("ContactId");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Contacts", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.Order", b =>
@@ -162,9 +159,7 @@ namespace Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("OrderDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 6, 2, 19, 53, 5, 562, DateTimeKind.Local).AddTicks(2252));
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("ReturnDate")
                         .HasColumnType("datetime2");
@@ -182,7 +177,7 @@ namespace Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.OrderDetail", b =>
@@ -211,7 +206,7 @@ namespace Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderDetails");
+                    b.ToTable("OrderDetails", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.Product", b =>
@@ -248,8 +243,8 @@ namespace Data.Migrations
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<int>("PublisherId")
                         .HasColumnType("int");
@@ -288,7 +283,7 @@ namespace Data.Migrations
 
                     b.HasIndex("PublisherId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.ProductCategory", b =>
@@ -303,7 +298,7 @@ namespace Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("ProductCategories");
+                    b.ToTable("ProductCategorys", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.Publisher", b =>
@@ -331,7 +326,7 @@ namespace Data.Migrations
 
                     b.HasKey("PublisherId");
 
-                    b.ToTable("Publishers");
+                    b.ToTable("Publishers", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.Role", b =>
@@ -344,16 +339,17 @@ namespace Data.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("RoleName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("RoleId");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.User", b =>
@@ -366,8 +362,8 @@ namespace Data.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<int?>("AmountBorrowed")
                         .ValueGeneratedOnAdd()
@@ -382,7 +378,8 @@ namespace Data.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -391,8 +388,7 @@ namespace Data.Migrations
 
                     b.Property<string>("Image")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastLogin")
                         .HasColumnType("datetime2");
@@ -427,7 +423,7 @@ namespace Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.UserRole", b =>
@@ -442,7 +438,7 @@ namespace Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRoles");
+                    b.ToTable("UserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.Cart", b =>
@@ -450,13 +446,13 @@ namespace Data.Migrations
                     b.HasOne("Data.Entities.Product", "Product")
                         .WithMany("Carts")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Data.Entities.User", "User")
                         .WithMany("Carts")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Product");
@@ -464,21 +460,12 @@ namespace Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Data.Entities.Category", b =>
-                {
-                    b.HasOne("Data.Entities.Category", "ParentCategory")
-                        .WithMany()
-                        .HasForeignKey("ParentId");
-
-                    b.Navigation("ParentCategory");
-                });
-
             modelBuilder.Entity("Data.Entities.Order", b =>
                 {
                     b.HasOne("Data.Entities.User", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -489,13 +476,13 @@ namespace Data.Migrations
                     b.HasOne("Data.Entities.Order", "Order")
                         .WithMany("OrderDetails")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Data.Entities.Product", "Product")
                         .WithMany("OrderDetails")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Order");
@@ -508,24 +495,24 @@ namespace Data.Migrations
                     b.HasOne("Data.Entities.Author", "Author")
                         .WithMany("Products")
                         .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data.Entities.Category", "Category")
+                    b.HasOne("Data.Entities.Category", "Categories")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Data.Entities.Publisher", "Publisher")
                         .WithMany("Products")
                         .HasForeignKey("PublisherId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Author");
 
-                    b.Navigation("Category");
+                    b.Navigation("Categories");
 
                     b.Navigation("Publisher");
                 });
@@ -535,13 +522,13 @@ namespace Data.Migrations
                     b.HasOne("Data.Entities.Category", "Category")
                         .WithMany("ProductCategories")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Data.Entities.Product", "Product")
                         .WithMany("ProductCategories")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
@@ -565,13 +552,13 @@ namespace Data.Migrations
                     b.HasOne("Data.Entities.Role", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Data.Entities.User", "User")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Role");
