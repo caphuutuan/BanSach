@@ -35,6 +35,8 @@ public partial class QLBanSachDBContext : DbContext
 
     public DbSet<User> Users { get; set; }
 
+    public DbSet<UserRole> UserRoles { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new CartConfiguration());
