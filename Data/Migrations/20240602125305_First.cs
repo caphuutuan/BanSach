@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Data.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstInit : Migration
+    public partial class First : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,7 @@ namespace Data.Migrations
                 {
                     AuthorId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AuthorName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    AuthorName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Image = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false)
                 },
@@ -32,18 +32,23 @@ namespace Data.Migrations
                 {
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    CategoryName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Image = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     ParentId = table.Column<int>(type: "int", nullable: true),
-                    SeoDescription = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    SeoTitle = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    SeoAlias = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    SeoDescription = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    SeoTitle = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    SeoAlias = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.CategoryId);
+                    table.ForeignKey(
+                        name: "FK_Categories_Categories_ParentId",
+                        column: x => x.ParentId,
+                        principalTable: "Categories",
+                        principalColumn: "CategoryId");
                 });
 
             migrationBuilder.CreateTable(
@@ -55,7 +60,7 @@ namespace Data.Migrations
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -84,8 +89,8 @@ namespace Data.Migrations
                 {
                     RoleId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
+                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -98,7 +103,7 @@ namespace Data.Migrations
                 {
                     ProductId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    ProductName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
@@ -120,20 +125,17 @@ namespace Data.Migrations
                         name: "FK_Products_Authors_AuthorId",
                         column: x => x.AuthorId,
                         principalTable: "Authors",
-                        principalColumn: "AuthorId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "AuthorId");
                     table.ForeignKey(
                         name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "CategoryId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CategoryId");
                     table.ForeignKey(
                         name: "FK_Products_Publishers_PublisherId",
                         column: x => x.PublisherId,
                         principalTable: "Publishers",
-                        principalColumn: "PublisherId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "PublisherId");
                 });
 
             migrationBuilder.CreateTable(
@@ -145,9 +147,9 @@ namespace Data.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Sdt = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Username = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Dob = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -169,7 +171,7 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductCategorys",
+                name: "ProductCategories",
                 columns: table => new
                 {
                     ProductId = table.Column<int>(type: "int", nullable: false),
@@ -177,19 +179,17 @@ namespace Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductCategorys", x => new { x.ProductId, x.CategoryId });
+                    table.PrimaryKey("PK_ProductCategories", x => new { x.ProductId, x.CategoryId });
                     table.ForeignKey(
-                        name: "FK_ProductCategorys_Categories_CategoryId",
+                        name: "FK_ProductCategories_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "CategoryId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CategoryId");
                     table.ForeignKey(
-                        name: "FK_ProductCategorys_Products_ProductId",
+                        name: "FK_ProductCategories_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ProductId");
                 });
 
             migrationBuilder.CreateTable(
@@ -207,14 +207,12 @@ namespace Data.Migrations
                         name: "FK_Carts_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ProductId");
                     table.ForeignKey(
                         name: "FK_Carts_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
@@ -224,7 +222,7 @@ namespace Data.Migrations
                     OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 6, 2, 19, 53, 5, 562, DateTimeKind.Local).AddTicks(2252)),
                     ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LateFee = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -237,8 +235,7 @@ namespace Data.Migrations
                         name: "FK_Orders_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
@@ -255,14 +252,12 @@ namespace Data.Migrations
                         name: "FK_UserRoles_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Roles",
-                        principalColumn: "RoleId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "RoleId");
                     table.ForeignKey(
                         name: "FK_UserRoles_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
@@ -283,20 +278,23 @@ namespace Data.Migrations
                         name: "FK_OrderDetails_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
-                        principalColumn: "OrderId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "OrderId");
                     table.ForeignKey(
                         name: "FK_OrderDetails_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ProductId");
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Carts_UserId",
                 table: "Carts",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Categories_ParentId",
+                table: "Categories",
+                column: "ParentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderDetails_OrderId",
@@ -314,8 +312,8 @@ namespace Data.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductCategorys_CategoryId",
-                table: "ProductCategorys",
+                name: "IX_ProductCategories_CategoryId",
+                table: "ProductCategories",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
@@ -357,7 +355,7 @@ namespace Data.Migrations
                 name: "OrderDetails");
 
             migrationBuilder.DropTable(
-                name: "ProductCategorys");
+                name: "ProductCategories");
 
             migrationBuilder.DropTable(
                 name: "UserRoles");

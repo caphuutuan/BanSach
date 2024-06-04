@@ -13,7 +13,7 @@ namespace Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
-            builder.HasOne(x => x.User).WithMany(x=>x.Orders).HasForeignKey(x=>x.UserId);
+            builder.HasOne(x => x.User).WithMany(x=>x.Orders).HasForeignKey(x=>x.UserId).OnDelete(DeleteBehavior.NoAction);
             builder.Property(x=>x.OrderDate).HasDefaultValue(DateTime.Now);
         }
     }
